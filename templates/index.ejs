@@ -31,7 +31,9 @@
 
   <%- include('support') -%>
 
-  <%- include('guides/fiz') -%>
+  <% candidates.forEach(function(candidate, i) { %>
+    <%- include('guides/fiz', {i: i}) -%>
+  <% }) %>
 
   <%- include('form') -%>
 
