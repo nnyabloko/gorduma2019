@@ -1,0 +1,73 @@
+<header class="masthead clearfix text-right text-black">
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading mb-0 font-italic text-uppercase pr-2 text-white bg-danger"> <%= blocks[0] %></h1>
+      <h2 class="masthead-subheading mb-0 text-white bg-success"></h2>
+      <a href="#" class="d-none btn btn-primary btn-xl rounded-pill mt-5">Помочь кампании финансово</a>
+    </div>
+  </div>
+  <div class="bg-circle-4 bg-circle"></div>
+  <div class="masthead-text">
+    <div class="container">
+      <div class="row text-left">
+        <div class="col-lg-8 col-10">
+          <div class="h4 text-white text-left"><%= blocks[1] %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container mt-4">
+    <div class="row align-items-center">
+      <div class="col-lg-3">
+        <div class="p-1">
+          <h4 class="font-italic">Зачем становиться волонтёром?</h4>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="p-1">
+          <p><%- md.render(blocks[2]) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<% candidates.forEach(function(candidate, i) { %>
+  <section class="candidate mb-5 mt-3">
+    <div class="container">
+      <div class="row clearfix align-items-center">
+        <div class="col-lg-5 order-lg-<%= 1 + (i & 1) %>">
+          <div class="p-3">
+            <img class="img-fluid rounded" src="<%= candidate.img_url %>" alt="">
+          </div>
+          <div class="justify-content-center">
+            <a href="#volunteer-form" class="d-block display-4 btn btn-primary btn-xl rounded-pill">Помочь кандидату</a>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-<%= 2 - (i & 1) %>">
+          <div class="p-3">
+            <h2 class="display-4"><%= candidate.name %></h2>
+            <p><%- md.render(candidate.desc) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% }) %>
+
+<section>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="p-3">
+          <h4>Чем можно помочь?</h4>
+          <p><%- md.render(blocks[3]) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

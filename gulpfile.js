@@ -122,7 +122,7 @@ function files(done) {
 
 // EJS task
 function ejs_task(done) {
-  gulp.src('./templates/index.ejs')
+  gulp.src(['./templates/index.ejs', './templates/donate.ejs'])
     .pipe(ejs({
       candidates: require('./data/candidates.json'),
       blocks: require('./data/blocks.json'),
