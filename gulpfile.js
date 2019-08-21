@@ -16,6 +16,7 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const Trello = require("trello");
 const ejs = require("gulp-ejs")
+const glob = require("glob")
 const md = require('markdown-it')();
 
 // BrowserSync
@@ -56,13 +57,26 @@ function getData(done) {
         })
       })
     }).then(() => {
-      fs.writeFileSync('data/candidates.json', JSON.stringify(cards));
-      trello.getCardsOnBoard(process.env.BLOCKS_BOARD).then((blocks) => {
-        var b_map = blocks.map(x => x.desc);
-        fs.writeFileSync('data/blocks.json', JSON.stringify(b_map));
-        trello.getCardsOnBoard(process.env.DISTRICTS_BOARD).then((disctricts) => {
-          fs.writeFileSync('data/districts.json', JSON.stringify(disctricts));
-          done()
+      trello.getCardsOnBoard(process.env.ACCOUNTS_BOARD).then((accs) => {
+        accs.forEach((acc,i,ar) => {
+          var cand = cards.find( card => card.name === acc.name )
+          cand.fullName = acc.desc.match(/Имя: (.+)/i)[1]
+          cand.rs = acc.desc.match(/р\/счет: (.+)/i)[1]
+          cand.bank = acc.desc.match(/Банк: (.+)/i)[1]
+          cand.filial = acc.desc.match(/Филиал: (.+)/i)[1]
+          cand.ks = acc.desc.match(/корр.счет: (.+)/i)[1]
+          cand.bik = acc.desc.match(/БИК: (.+)/i)[1]
+          cand.inn = acc.desc.match(/ИНН: (.+)/i)[1]
+          console.log(cand)
+        })
+        fs.writeFileSync('data/candidates.json', JSON.stringify(cards));
+        trello.getCardsOnBoard(process.env.BLOCKS_BOARD).then((blocks) => {
+          var b_map = blocks.map(x => x.desc);
+          fs.writeFileSync('data/blocks.json', JSON.stringify(b_map));
+          trello.getCardsOnBoard(process.env.DISTRICTS_BOARD).then((disctricts) => {
+            fs.writeFileSync('data/districts.json', JSON.stringify(disctricts));
+            done()
+          })
         })
       })
     })
@@ -127,6 +141,7 @@ function ejs_task(done) {
       candidates: require('./data/candidates.json'),
       blocks: require('./data/blocks.json'),
       env: process.env,
+      glob: glob,
       md: md }))
     .pipe(rename({ extname: '.html' }))
     .pipe(gulp.dest('./dist'))
