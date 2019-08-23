@@ -56,3 +56,12 @@ input[name='__'] {
     font-style: normal;
   }
 }
+
+.socialicon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.socialinput {
+  width: calc(100% - 2.5rem);
+}

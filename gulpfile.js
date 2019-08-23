@@ -154,6 +154,7 @@ function watchFiles() {
   gulp.watch("./scss/**/*", css);
   gulp.watch("./templates/**/*.ejs", ejs_task);
   gulp.watch("./**/*.html", browserSyncReload);
+  gulp.watch("./img/**/*", files);
 }
 
 // Define complex tasks
