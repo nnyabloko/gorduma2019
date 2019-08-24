@@ -18,7 +18,7 @@ h1 {
 
 .btn-xl {
   text-transform: uppercase;
-  padding: 1.5rem 3rem;
+  padding: .5rem 1rem;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
@@ -60,8 +60,4 @@ input[name='__'] {
 .socialicon {
   height: 2rem;
   width: 2rem;
-}
-
-.socialinput {
-  width: calc(100% - 2.5rem);
 }

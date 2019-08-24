@@ -18,6 +18,8 @@ const Trello = require("trello");
 const ejs = require("gulp-ejs")
 const glob = require("glob")
 const md = require('markdown-it')();
+const lvovich = require('lvovich');
+const slugify = require('@sindresorhus/slugify');
 
 // BrowserSync
 function browserSync(done) {
@@ -49,6 +51,8 @@ function getData(done) {
     var count = 0;
     new Promise((resolve, reject) => {
       cards.forEach((card,i,ar) => {
+        card.first_name = card.name.split(' ')[0]
+        card.last_name = card.name.split(' ')[1]
         var req_path = '/1/cards/'+card.id+'/attachments/'+card.idAttachmentCover
         trello.makeRequest('get', req_path).then((att) => {
           card.img_url = att.url;
@@ -67,7 +71,6 @@ function getData(done) {
           cand.ks = acc.desc.match(/корр.счет: (.+)/i)[1]
           cand.bik = acc.desc.match(/БИК: (.+)/i)[1]
           cand.inn = acc.desc.match(/ИНН: (.+)/i)[1]
-          console.log(cand)
         })
         fs.writeFileSync('data/candidates.json', JSON.stringify(cards));
         trello.getCardsOnBoard(process.env.BLOCKS_BOARD).then((blocks) => {
@@ -142,6 +145,8 @@ function ejs_task(done) {
       blocks: require('./data/blocks.json'),
       env: process.env,
       glob: glob,
+      lvovich: lvovich,
+      slugify: slugify,
       md: md }))
     .pipe(rename({ extname: '.html' }))
     .pipe(gulp.dest('./dist'))

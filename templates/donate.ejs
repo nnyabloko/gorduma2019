@@ -1,5 +1,5 @@
 <% candidates.forEach((candidate, index) => { %>
-  <section class="d-none donate-block" id="donate_<%= index %>">
+  <section class="d-none donate-block" id="donate_<%= slugify(candidate.last_name) %>">
     <% glob.sync("templates/guides/*.ejs").forEach((f) => { %>
       <div class="container mt-4">
         <%- include(f.replace("templates/", ""), {candidate: candidate}) -%>
