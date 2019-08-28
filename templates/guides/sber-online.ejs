@@ -1,15 +1,15 @@
-<h2>Сбербанк-онлайн (через сайт)</h2>
+<h4>Сбербанк-онлайн (через сайт)</h4>
 <div class="attention">Внимание! Указывайте дату рождения полностью!</div>
 <ol>
   <li>Войдите в «Сбербанк Онлайн»</li>
 	<li>Перейдите в раздел «Переводы и платежи»</li>
 	<li>Выберите раздел «Товары и услуги» и пункт «Избирательные кампании»</li>
 	<li>Нажмите на «Выборы — пожертвования»</li>
-	<li>Введите БИК: <span class="details__bik"></span><!--044525225--></li>
+	<li>Введите БИК: <span class="details__bik"></span><%= candidate.bik %></li>
 	<li>Введите необходимые реквизиты:
     <ul>
-		  <li>Номер счёта: <span class="details__candidate-account"></span><!--40810810538009417259--></li>
-			<li>Получатель: <span class="details__candidate-full-name"></span><!--Беседина Дарья Станиславовна--></li>
+		  <li>Номер счёта: <span class="details__candidate-account"></span><%= candidate.rs %></li>
+			<li>Получатель: <span class="details__candidate-full-name"></span><%= candidate.fullName %></li>
 		</ul>
 	</li>
 	<li>Введите все необходимые данные о вас: ФИО, дата рождения, адрес <b>прописки</b>, номер паспорта</li>
