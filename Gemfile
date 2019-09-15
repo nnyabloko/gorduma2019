@@ -12,3 +12,6 @@ gem 'addressable'
 gem 'pry'
 gem 'bugsnag'
 gem 'cloudflare', :git => 'https://github.com/sonicdes/cloudflare.git', :branch => 'master'
+
+# Requires libqrencode-dev
+gem 'qrencoder'

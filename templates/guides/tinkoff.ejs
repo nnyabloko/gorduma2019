@@ -15,3 +15,7 @@
   	<li>Введите сумму вашего платежа</li>
   	<li>Проверьте реквизиты и нажмите «Перевести»</li>
   </ol>
+  <%- include('donate-form', {candidate: candidate}) -%>
+  <div class="iframe-container col-12" style="object-fit: contain;">
+    <iframe class="qr-code-iframe" style="object-fit: contain;" name="qrcode-iframe"></iframe>
+  </div>

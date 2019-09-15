@@ -1,0 +1,36 @@
+<form target="qrcode-iframe" action="<%= env.API_URL %>/qrcode" method="POST">
+  <input type="hidden" name="bik" value="<%= candidate.bik %>">
+  <input type="hidden" name="rs" value="<%= candidate.rs %>">
+  <input type="hidden" name="inn" value="<%= candidate.inn %>">
+  <input type="hidden" name="bank" value="<%= candidate.bank %>">
+  <input type="hidden" name="ks" value="<%= candidate.ks %>">
+  <input type="hidden" name="full_name" value="<%= candidate.fullName %>">
+  <fieldset>
+    <legend>Вы можете ввести свои данные, чтобы получить QR-код для оплаты</legend>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>ФИО, полностью</label>
+        <input type="text" class="form-control" name="payer_name">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Дата рождения</label>
+        <input type="text" class="form-control" name="birth_date">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Адрес прописки с указанием региона</label>
+        <input type="text" class="form-control" name="address">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Серия и номер паспорта</label>
+        <input type="text" class="form-control" name="passport">
+      </div>
+    </div>
+    <p>
+      <button type="submit" class="btn btn-primary mb-2">Получить QR-код</button>
+    </p>
+  </fieldset>
+</form>
