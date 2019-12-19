@@ -54,7 +54,7 @@ GEM
       nio4r (~> 2.0)
     qrencoder (1.4.1)
       chunky_png (~> 1.1)
-    rack (2.0.7)
+    rack (2.0.8)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
